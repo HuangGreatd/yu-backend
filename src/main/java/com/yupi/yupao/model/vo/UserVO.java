@@ -1,5 +1,6 @@
 package com.yupi.yupao.model.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.Date;
 
  */
 @Data
+@Builder
 public class UserVO implements Serializable {
     /**
      * id
@@ -72,10 +74,8 @@ public class UserVO implements Serializable {
      */
     private Integer userRole;
 
-    /**
-     * 星球编号
-     */
-    private String planetCode;
+    private String wxOpenId;
+
 
     private static final long serialVersionUID = 1L;
 }

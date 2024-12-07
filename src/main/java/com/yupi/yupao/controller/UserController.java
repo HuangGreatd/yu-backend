@@ -1,30 +1,16 @@
 package com.yupi.yupao.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yupi.yupao.common.BaseResponse;
-import com.yupi.yupao.common.ErrorCode;
 import com.yupi.yupao.common.ResultUtils;
-import com.yupi.yupao.exception.BusinessException;
 import com.yupi.yupao.model.dto.WeChatCodeDTO;
-import com.yupi.yupao.model.request.UserLoginRequest;
-import com.yupi.yupao.model.request.UserRegisterRequest;
+import com.yupi.yupao.model.vo.UserVO;
 import com.yupi.yupao.model.vo.UsersLoginVO;
 import com.yupi.yupao.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import static com.yupi.yupao.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
  * 用户接口
@@ -37,14 +23,17 @@ public class UserController {
     @Resource
     private UserService userService;
 
+
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
     @PostMapping("/auth/wechat")
-    public BaseResponse<UsersLoginVO> authWechat(@RequestBody WeChatCodeDTO code) {
-        UsersLoginVO userLoginVO = userService.authWechat(code);
+    public BaseResponse<UserVO> authWechat(@RequestBody WeChatCodeDTO code) {
+        UserVO userLoginVO = userService.authWechat(code);
         return ResultUtils.success(userLoginVO);
     }
+
+
 
 //    @PostMapping("/register")
 //    public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {

@@ -1,8 +1,10 @@
 package com.yupi.yupao.service;
 
+import com.yupi.yupao.common.BaseResponse;
 import com.yupi.yupao.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupao.model.dto.WeChatCodeDTO;
+import com.yupi.yupao.model.vo.UserVO;
 import com.yupi.yupao.model.vo.UsersLoginVO;
 
 /**
@@ -12,5 +14,6 @@ import com.yupi.yupao.model.vo.UsersLoginVO;
 */
 public interface UserService extends IService<User> {
 
-    UsersLoginVO authWechat(WeChatCodeDTO code);
+    UserVO authWechat(WeChatCodeDTO code);
+
 }

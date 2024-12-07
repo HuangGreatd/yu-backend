@@ -1,6 +1,5 @@
 package com.yupi.yupao.config;
 
-import com.yupi.yupao.service.IWeixinApiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +25,4 @@ public class Retrofit2Config {
     }
 
 
-    @Bean
-    public IWeixinApiService weixinApiService(Retrofit retrofit) {
-        return retrofit.create(IWeixinApiService.class);
-    }
 }

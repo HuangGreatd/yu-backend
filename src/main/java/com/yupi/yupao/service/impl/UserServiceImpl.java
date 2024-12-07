@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yupi.yupao.model.domain.User;
 import com.yupi.yupao.model.domain.weixin.Users;
 import com.yupi.yupao.model.dto.WeChatCodeDTO;
+import com.yupi.yupao.model.vo.UserVO;
 import com.yupi.yupao.model.vo.UsersLoginVO;
 import com.yupi.yupao.service.UserService;
 import com.yupi.yupao.mapper.UserMapper;
@@ -41,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private UserMapper userMapper;
 
     @Override
-    public UsersLoginVO authWechat(WeChatCodeDTO code) {
+    public UserVO authWechat(WeChatCodeDTO code) {
         // 获取 openid
         String openId = getOpenId(code.getCode());
 
@@ -57,24 +58,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             // 如果用户不存在，则创建用户
             User user = new User();
             Users users = Users.builder().openId(openId).createTime(LocalDateTime.now()).build();
-            Long id = users.getId();
-            String username = users.getUsername();
-            String avatarUrl = users.getAvatarUrl();
 
             user.setMpOpenId(openId);
-            user.setUserAvatar(avatarUrl);
-            user.setUserName("默认用户");
-            user.setUserAccount("默认");
-            user.setUserPassword("123456");
+            user.setUserAvatar(code.getAvatar());
+            user.setUserName(code.getNickname());
+            user.setUserAccount(code.getNickname());
 
             System.out.println("user = " + user);
             userMapper.insert(user);
             log.info("users:" + users.toString());
-            return UsersLoginVO.builder().id(users.getId()).token(token).build();
+            return UserVO.builder().id(user.getId()).wxOpenId(token).build();
         }
         log.info("已存在");
         // 用户已存在
-        return UsersLoginVO.builder().id(userId).token(token).build();
+        return UserVO.builder().id(userId).wxOpenId(token).build();
 
 
     }

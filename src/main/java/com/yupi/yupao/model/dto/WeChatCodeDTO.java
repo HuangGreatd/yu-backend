@@ -10,6 +10,12 @@ import lombok.Data;
  */
 @Data
 public class WeChatCodeDTO {
-    /**微信token*/
+    /**
+     * 微信token
+     */
     private String code;
+
+    private String avatar;
+
+    private String nickname;
 }
