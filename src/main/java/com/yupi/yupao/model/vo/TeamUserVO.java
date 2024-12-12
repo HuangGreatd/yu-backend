@@ -25,7 +25,6 @@ public class TeamUserVO implements Serializable {
      */
     private String name;
 
-    // 作_者 【程序员_鱼皮】 https://space.bilibili.com/12890453/
 
     /**
      * 描述
@@ -66,14 +65,4 @@ public class TeamUserVO implements Serializable {
      * 创建人用户信息
      */
     private UserVO createUser;
-
-    /**
-     * 已加入的用户数
-     */
-    private Integer hasJoinNum;
-
-    /**
-     * 是否已加入队伍
-     */
-    private boolean hasJoin = false;
 }

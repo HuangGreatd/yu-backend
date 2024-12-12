@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class JwtUtil {
 
-    private static String JWT_SECRET_KEY = "HOPE_MP";
+    private static final String JWT_SECRET_KEY = "HOPE_MP";
 
     // 接收业务数据,生成token 并返回
     public static String genToken(Map<String, Object> claims) {
