@@ -1,5 +1,8 @@
 package com.yupi.yupao.model.request;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -7,48 +10,37 @@ import java.util.Date;
 
 /**
  * 创建队伍请求体
- *
-
  */
 @Data
 public class TeamAddRequest implements Serializable {
 
     private static final long serialVersionUID = 3191241716373120793L;
 
-    /**
-     * 队伍名称
-     */
-    private String name;
 
     /**
-     * 描述
+     * 码头
      */
-    private String description;
+    private String teamWharf;
 
     /**
-     * 最大人数
+     * 描述，例如 ： 一男一女，寻找女士拼一筏
      */
-    private Integer maxNum;
+    private String teamDesc;
+
 
     /**
-     * 过期时间
+     * 创建时间
      */
-    private Date expireTime;
+    private Date createTime;
+
 
     /**
-     * 用户id
+     * 重量：例如 194kg
      */
-    private Long userId;
+    private Double weight;
 
     /**
-     * 0 - 公开，1 - 私有，2 - 加密
+     * 手机号
      */
-    private Integer status;
-
-    // [加入星球](https://www.code-nav.cn/) 从 0 到 1 项目实战，经验拉满！10+ 原创项目手把手教程、7 日项目提升训练营、60+ 编程经验分享直播、1000+ 项目经验笔记
-
-    /**
-     * 密码
-     */
-    private String password;
+    private String phone;
 }
