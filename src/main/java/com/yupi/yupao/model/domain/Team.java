@@ -72,6 +72,9 @@ public class Team implements Serializable {
     @TableField(value = "weight")
     private Double weight;
 
+    @TableField(value = "phone")
+    private String phone;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
